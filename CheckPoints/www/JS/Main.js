@@ -78,7 +78,7 @@ function updateDistance() {
 
 	globals.directions = new google.maps.DirectionsService();
 		
-	globals.origin = new google.maps.LatLng(globals.startingMarker.getPosition().lat(), globals.startingMarker.getPosition().lng());
+	globals.origin = new google.maps.LatLng(globals.userMarker.getPosition().lat(), globals.userMarker.getPosition().lng());
 	globals.destination = new google.maps.LatLng(globals.finishMarker.getPosition().lat(), globals.finishMarker.getPosition().lng());
 
 	
@@ -94,7 +94,7 @@ function updateDistance() {
 	}, function(DirectionsResult, DirectionsStatus){
 		globals.lastDistance = globals.currentDistance;
 		//Now to store the directions
-		globals.currentDistance = Number(5);
+		globals.currentDistance = 0;
 			
 		for(var i = 0, j = DirectionsResult.routes[0].legs.length; i < j; i++) {
 		
@@ -102,17 +102,7 @@ function updateDistance() {
 		
 		}
 		
-		
-		
-		
-		//Create the marker to indecate user
-		globals.userMarker = new google.maps.Marker({
-		
-			map: globals.map,
-			position: new google.maps.LatLng(globals.startingLocation.coords.latitude, globals.startingLocation.coords.longitude),
-			title: "You"
-		
-		});
+		updateGlobals();
 		
 	});
 
@@ -188,6 +178,36 @@ function updateTime() {
 }
 
 
+function updateGlobals() {
+
+	//updateDistance();
+	
+	
+	var distanceTraveled = globals.totalDistance - globals.currentDistance;
+	
+	
+	if(globals.currentDistance <= 25) {
+		alert(globals.currentDistance);
+		gameOver();
+		return true;
+	
+	}
+	
+	
+	if((Math.floor((distanceTraveled / 60) * 100) / 100) > globals.lastCheckpoint && (Math.floor((distanceTraveled / 60) * 100) / 100) >= 1) {
+	
+		//next checkpoint
+		alert("Checkpoint Reached");
+		globals.lastCheckpoint += 1;
+		globals.currentTimeLeft += 80;
+	
+	} 
+	
+	
+
+}
+
+
 
 function startGame() {
 	
@@ -195,36 +215,20 @@ function startGame() {
 	globals.completedCheckpoints = 0;
 	globals.currentPoints = 0;
 	globals.timer = setInterval(updateTime, 1000);
+	globals.lastCheckpoint = 0;
+	globals.currentDistance = 0;
 
 	var onWatchUpdate = function(position) {
 		
-		
 		//Update your location marker on the map
-		globals.userMarker.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
+		var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+		globals.userMarker.setPosition(latLng);
 		
 		
-		//Update the distances
+		//updateGlobals();
+		
 		updateDistance();
 		
-		
-		
-		//Calculate how many checkpoints you have left
-		globals.checkpointsLeft = ((globals.totalDistance - globals.currentDistance) / 50);
-		
-		if(globals.checkpointsLeft < 1) {
-			user.stats.totalGames += 1;
-			user.stats.gamesWon += 1;
-			gameOver();
-		} else if (globals.checkpointsLeft < globals.lastCheckpointsLeft) {
-			
-			globals.completedCheckpoints++;
-			globals.currentTimeLeft += 20;
-			globals.currentPoints += 100;
-			updateUI();
-		
-		} 
-		
-		updateUI();
 		
 	}
 	
@@ -351,6 +355,9 @@ function setupGame() {
 		
 		
 		alert("The total distance is " + dist + " " + meters + ". You have " + globals.checkPointInterval + " checkpoints to get to. Run!");
+		
+		
+		
 		
 		//Create the marker to indecate user
 		globals.userMarker = new google.maps.Marker({
