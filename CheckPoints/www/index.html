@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CheckPoints</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+		<meta charset="utf-8">
+		
+		<script src="http://maps.googleapis.com/maps/api/js?sensor=true" type="text/javascript"></script>
+		
+		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+		<script src="JS/global_funcs.js"></script>
+		<script type="text/javascript" src="JS/Navigation.js"></script>
+		<script type="text/javascript" src="JS/Main.js"></script>
+		<!-- iPad/iPhone specific css below, add after your main css >
+		<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
+		<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />		
+		-->
+		<!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
+		<script type="text/javascript" charset="utf-8" src="JS/cordova-1.5.0.js"></script>
+		
+		
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+		
+		
+		<link rel="stylesheet" type="text/css" href="CSS/Main.css" />
+	</head>
+	<body onload="onBodyLoad()">
+	
+		
+		<div data-role="page" id="login">
+		
+			<div data-role="content">
+				
+				<p class="logo"><img src="IMAGES/logo.png" /></p>
+				
+				<h3>Login</h3>
+				
+				<form method="post" action="#" id="loginForm" data-ajax="false">
+					
+					
+   					<input type="text" name="email" id="email" value="Email Address" />
+					
+   					<input type="password" name="password" id="password" value="Password" />
+   					
+   					
+   					<input type="submit" value="login" id="loginButton" data-theme="b" />
+				
+				</form>
+				
+			
+				<h3>Don't have an account?</h3>
+				
+				<div id="loginAlternatives">
+					
+					
+					<h2 class="loginAlternative" id="alternative1">
+						<img src="IMAGES/createAccount.png" />
+					</h2>
+					
+					<!--<h2 class="loginAlternative" id="alternative2">
+						<a href="#loginFacebook" alt="Create an Account">Login via Facebook</a>
+					</h2>-->
+					
+					
+					<h2 class="loginAlternative" id="alternative3">
+						<img src="IMAGES/learnMore.png" />
+					</h2>
+				
+				</div>
+			
+			
+			</div>
+		
+		</div>
+        <!-- Ends Login page -->
+		
+		
+		
+		<div data-role="page" id="signUpPage">
+		
+		
+			<div data-role="content">
+			
+				<p class="logo"><img src="IMAGES/logo.png" /></p>
+				
+				
+				<h3>Create new Account</h3>
+				
+				
+				<form method="post" action="#" data-ajax="false" id="signUpForm">
+					
+					<label for="basic">Email Address:</label>
+					<input type="text" id="signUpEmail" />
+					
+					
+					<label for="basic">Firstname:</label>
+					<input type="text" id="signUpFn" />
+					
+					
+					<label for="basic">Lastname:</label>
+					<input type="text" id="signUpLn" />
+					
+					
+					<label for="basic">Password:</label>
+					<input type="password" id="signUpPass" />
+					
+					<input type="submit" id="signUpBtn" data-theme="b" value="Sign-Up" />
+					<input type="submit" class="back" data-theme="b" value="Back" />
+				
+				</form>
+			
+			</div>
+		
+		
+		</div>
+		
+		<div data-role="page" id="howToPlay">
+			
+			<div data-role="content">
+			
+				<h3>How to Play</h3>
+				
+				<p>Welcome to CheckPoints! Here is a quick guide on how to play the game. The game is only two simple steps, but 
+				a fun time while getting a great work out in.</p>
+				
+				<h4>First</h4>
+				
+				<p>Select a finish line from the first map</p>
+				
+				<h4>Second</h4>
+				
+				<p>Run as fast as you can to the next CheckPoint to earn more time</p>
+				
+				<input type="submit" value="Back to Menu" data-theme="b" class="back" />
+			
+			</div>
+			
+		</div>
+		
+        
+        <!-- Begins Main Menu Page -->
+        <div data-role="page" id="mainUI">
+            
+            <div data-role="content">
+                
+                <p class="logo"><img src="IMAGES/logo.png" /></p>
+                
+                
+                <div id="mainUITiles">
+                    
+                    <h2 class="mainUITile" id="mainUITile1">
+						<img src="IMAGES/startRunning.png" />
+					</h2>
+                    
+                    <h2 class="mainUITile" id="mainUITile2">
+						<img src="IMAGES/howToPlay.png" />
+					</h2>
+                    
+                    <h2 class="mainUITile" id="mainUITile3">
+						<img src="IMAGES/myStatistics.png" />
+					</h2>
+                    
+                    <h2 class="mainUITile" id="mainUITile4">
+						<img src="IMAGES/myOptions.png" />
+					</h2>
+                    
+                </div>
+                <!-- Ends mainUITiles -->
+                
+                
+            </div>
+            
+        </div>
+        <!-- Ends Main Menu Page -->
+        
+        
+        <div data-role="page" id="runSetup">
+            
+            <div data-role="content">
+                
+                <p class="logo"><img src="IMAGES/logo.png" /></p>
+                
+                <h3>Choose a finish point</h3>
+                
+                <div id="choosePointMap">
+                    
+                    <!-- Map will be loaded in here -->
+                    
+                </div>
+                
+                <p><input type="submit" value="Run" id="startRunningBtn" /></p>
+				
+				<p><input type="submit" value="Back" class="back"  data-theme="b"/></p>
+                
+            </div>
+            
+        </div>
+        
+        <div data-role="page" id="running">
+            
+            <div data-role="content">
+                
+                <div id="runningMap">
+                    
+                    <!-- Map will be loaded in here -->
+                    
+                </div>
+                
+                <div id="footerContainer">
+                    
+                    <div id="column1">
+                        
+                        <p>
+                            Next Checkpoint
+                            <br />
+                            <span class="value" id="meters">0</span> <span class="label"></span>
+                        </p>
+                        
+                        <p>
+                            Total Point
+                            <br />
+                            <span class="value" id="points">300</span> <span class="label">Points</span>
+                        </p>
+                        
+                    </div>
+                    
+                    
+                    <div id="column2">
+                        
+                        <p>Time Left</p>
+                        
+                        <p class="currentTimeLeft">
+                            <em id="timeLeft">89</em> 
+                            <br />
+                            <span class="label">Seconds</span>
+                        </p>
+                        
+                    </div>
+                    
+                </div>
+                <!-- Ends footerContainer -->
+				
+				<p style="margin: 0; padding: 0;"><input type="submit" value="Stop Run" id="stopRunBtn"  data-theme="b"/></p>
+                
+            </div>
+            <!-- Ends content -->
+            
+        </div>
+        <!-- Ends running page -->
+        
+        <div data-role="page" id="statistics">
+            
+            <div data-role="content">
+                
+                <p class="logo"><img src="IMAGES/logo.png" /></p>
+                
+                
+                
+                <div class="statsField">
+                    
+                    <p class="statsLabel">
+                        Total Miles
+                    </p>
+                    
+                    <p class="statsValue" id="totalMiles">
+                        0
+                    </p>
+                    
+                </div>
+                <!-- Ends .statsField -->
+                
+                <div class="statsField">
+                    
+                    <p class="statsLabel">
+                    Total Time
+                    </p>
+                    
+                    <p class="statsValue" id="totalTime">
+                    0 
+                    </p>
+                    
+                </div>
+                <!-- Ends .statsField -->
+                
+                
+                <div class="statsField">
+                    
+                    <p class="statsLabel">
+                    Calories
+                    </p>
+                    
+                    <p class="statsValue" id="calories">
+                    0 
+                    </p>
+                    
+                </div>
+                <!-- Ends .statsField -->
+                
+                <div class="statsField">
+                    
+                    <p class="statsLabel">
+                    Total Points
+                    </p>
+                    
+                    <p class="statsValue" id="totalPoints">
+                    0 
+                    </p>
+                    
+                </div>
+                <!-- Ends .statsField -->
+                
+                
+                
+                <div class="statsField">
+                    
+                    <p class="statsLabel">
+                    Games Played
+                    </p>
+                    
+                    <p class="statsValue" id="totalGames">
+                    0 
+                    </p>
+                    
+                </div>
+                <!-- Ends .statsField -->
+                
+                
+                <div class="statsField">
+                    
+                    <p class="statsLabel">
+                    Games Won
+                    </p>
+                    
+                    <p class="statsValue" id="gamesWon">
+                    0 
+                    </p>
+                    
+                </div>
+                <!-- Ends .statsField -->
+                
+                
+                <div class="statsField">
+                    
+                    <p class="statsLabel">
+                    Games Lossed
+                    </p>
+                    
+                    <p class="statsValue" id="gamesLost">
+                    0 
+                    </p>
+                    
+                </div>
+                <!-- Ends .statsField -->
+                
+                
+                <div class="statsField">
+                    
+                    <p class="statsLabel">
+                    Checkpoints
+                    </p>
+                    
+                    <p class="statsValue" id="checkpoints">
+                    0 
+                    </p>
+                    
+                </div>
+                <!-- Ends .statsField -->
+                
+                <input type="submit" value="Back" class="back"  data-theme="b"/>
+                
+                
+            </div>
+            <!-- Ends content -->
+            
+            
+        </div>
+        <!-- Ends statistics page -->
+        
+        
+        <div data-role="page" id="settings">
+            
+            <div data-role="content">
+                
+                <h3 style="color: #777;">Account ( <a href="#">Edit</a> )</h3>
+                
+                <div id="accountInfo">
+                    
+                    <div class="statsField">
+                        
+                        <p class="optionsLabel">
+                            Email
+                        </p>
+                        
+                        <p class="optionsValue">
+                            <span id="emailOpt"></span>
+                        </p>
+                        
+                    </div>
+                    <!-- Ends .statsField -->
+                    
+                    <div class="statsField">
+                        
+                        <p class="optionsLabel">
+                        Firstname
+                        </p>
+                        
+                        <p class="optionsValue">
+                        <span id="firstnameOpt"></span>
+                        </p>
+                        
+                    </div>
+                    <!-- Ends .statsField -->
+                    
+                    <div class="statsField">
+                        
+                        <p class="optionsLabel">
+                        Lastname
+                        </p>
+                        
+                        <p class="optionsValue">
+                        <span id="lastnameOpt"></span>
+                        </p>
+                        
+                    </div>
+                    <!-- Ends .statsField -->
+                    
+                </div>
+                <!-- Ends accountInfo -->
+                
+                <div id="soundSettings">
+                    
+                    <p class="optionsValueCheckbox">
+                    <label><input type="checkbox" name="checkbox-1" id="playSounds" /> Play Sounds</label>
+                    </p>
+                    
+                    <p class="optionsValueCheckbox">
+                    <label><input type="checkbox" name="checkbox-2" id="useMeters" /> Use Meters</label>
+                    </p>
+                    
+                    <p id="resetStats"><input type="submit" id="resetStatsButton" value="Reset Statistics" data-theme="a"/></p>
+                    
+					<p><input type="submit" id="saveSettings" value="Save Settings" data-theme="b"/></p>
+					
+                    <p><input type="submit" class="back" value="Back" data-theme="b"/></p>
+                    
+                </div>
+                <!-- Ends accountInfo -->
+                
+                <div id="resetStats">
+                    
+                    
+                    
+                </div>
+                <!-- Ends accountInfo -->
+                
+            </div>
+            
+        </div>
+        
+        
+	
+	
+	</body>
+</html>
