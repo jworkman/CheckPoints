@@ -11,8 +11,10 @@
 		<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
 		<script src="JS/global_funcs.js"></script>
+		
+		<!--<script type="text/javascript" src="JS/Main.js"></script>-->
+		<script type="text/javascript" src="JS/Game.js"></script>
 		<script type="text/javascript" src="JS/Navigation.js"></script>
-		<script type="text/javascript" src="JS/Main.js"></script>
 		<!-- iPad/iPhone specific css below, add after your main css >
 		<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
 		<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />		
@@ -50,7 +52,7 @@
 				</form>
 				
 			
-				<h3>Don't have an account?</h3>
+				<h3 id="alternativesHeader">Don't have an account?</h3>
 				
 				<div id="loginAlternatives">
 					
@@ -232,7 +234,7 @@
                         <p>Time Left</p>
                         
                         <p class="currentTimeLeft">
-                            <em id="timeLeft">89</em> 
+                            <em id="timeLeft">80</em> 
                             <br />
                             <span class="label">Seconds</span>
                         </p>
@@ -242,7 +244,7 @@
                 </div>
                 <!-- Ends footerContainer -->
 				
-				<p style="margin: 0; padding: 0;"><input type="submit" value="Stop Run" id="stopRunBtn"  data-theme="b"/></p>
+				<p style="margin: 0; padding: 0;"><input type="submit" value="Stop Run" class="back" data-theme="b"/></p>
                 
             </div>
             <!-- Ends content -->
@@ -257,118 +259,25 @@
                 <p class="logo"><img src="IMAGES/logo.png" /></p>
                 
                 
-                
-                <div class="statsField">
-                    
-                    <p class="statsLabel">
-                        Total Miles
-                    </p>
-                    
-                    <p class="statsValue" id="totalMiles">
-                        0
-                    </p>
-                    
-                </div>
-                <!-- Ends .statsField -->
-                
-                <div class="statsField">
-                    
-                    <p class="statsLabel">
-                    Total Time
-                    </p>
-                    
-                    <p class="statsValue" id="totalTime">
-                    0 
-                    </p>
-                    
-                </div>
-                <!-- Ends .statsField -->
+                <ul data-role="listview">
+				
+				
+					<li>Total Time <span class="ui-li-count" id="totalTime">0</span></li>
+					
+					<li>Total Distance <span class="ui-li-count" id="totalDist">0</span></li>
+					
+					<li>Total Points <span class="ui-li-count" id="totalPoints">0</span></li>
+					
+					<li>Games Played <span class="ui-li-count" id="totalGames">0</span></li>
+					
+					<li>Games Won <span class="ui-li-count" id="gamesWon">0</span></li>
+					
+					<li>Games Lost <span class="ui-li-count" id="gamesLost">0</span></li>
+				
+				</ul>
                 
                 
-                <div class="statsField">
-                    
-                    <p class="statsLabel">
-                    Calories
-                    </p>
-                    
-                    <p class="statsValue" id="calories">
-                    0 
-                    </p>
-                    
-                </div>
-                <!-- Ends .statsField -->
-                
-                <div class="statsField">
-                    
-                    <p class="statsLabel">
-                    Total Points
-                    </p>
-                    
-                    <p class="statsValue" id="totalPoints">
-                    0 
-                    </p>
-                    
-                </div>
-                <!-- Ends .statsField -->
-                
-                
-                
-                <div class="statsField">
-                    
-                    <p class="statsLabel">
-                    Games Played
-                    </p>
-                    
-                    <p class="statsValue" id="totalGames">
-                    0 
-                    </p>
-                    
-                </div>
-                <!-- Ends .statsField -->
-                
-                
-                <div class="statsField">
-                    
-                    <p class="statsLabel">
-                    Games Won
-                    </p>
-                    
-                    <p class="statsValue" id="gamesWon">
-                    0 
-                    </p>
-                    
-                </div>
-                <!-- Ends .statsField -->
-                
-                
-                <div class="statsField">
-                    
-                    <p class="statsLabel">
-                    Games Lossed
-                    </p>
-                    
-                    <p class="statsValue" id="gamesLost">
-                    0 
-                    </p>
-                    
-                </div>
-                <!-- Ends .statsField -->
-                
-                
-                <div class="statsField">
-                    
-                    <p class="statsLabel">
-                    Checkpoints
-                    </p>
-                    
-                    <p class="statsValue" id="checkpoints">
-                    0 
-                    </p>
-                    
-                </div>
-                <!-- Ends .statsField -->
-                
-                <input type="submit" value="Back" class="back"  data-theme="b"/>
+                <p id="backFromStatsBtn"><input type="submit" value="Back" class="back"  data-theme="b"/></p>
                 
                 
             </div>
@@ -460,7 +369,19 @@
         </div>
         
         
-	
+		<div data-role="page" id="dialog">
+		
+			<div data-role="content" data-theme="c">
+			
+						<h1>What next?</h1>
+						<p>The game has ended. What you would you like to do next?</p>
+						<a href="#mainUI" data-role="button" data-theme="b" class="back">Go Home</a>
+						<a href="#setupRun" data-role="button" data-theme="c" id="setNewGame">Setup Game</a>
+						<a href="#statistics" data-role="button" data-theme="c" id="goToStats">View Statistics</a> 
+			
+			</div>
+		
+		</div>
 	
 	</body>
 </html>

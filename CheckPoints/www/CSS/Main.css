@@ -39,6 +39,15 @@ h3 {
 }
 
 
+h3#alternativesHeader {
+
+	color: #888;
+	margin-bottom: 0;
+	padding: 0;
+	
+
+}
+
 
 #loginForm label {
 
@@ -339,6 +348,12 @@ h3 {
 
 
 
+#backFromStatsBtn {
 
+
+	margin-top: 2em;
+
+
+}
 
 

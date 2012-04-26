@@ -1,9 +1,3 @@
-
-
-
-
-
-
 function setupNav(){
 	
 	$("#alternative3").bind("click", function(e){
@@ -66,10 +60,27 @@ function setupNav(){
 	$("#mainUITile1").bind("click", function(e){
 		
 		$.mobile.changePage("#runSetup", "slideup");
+		var runBtn = $("#startRunningBtn");
+		runBtn.button('disable');
+		
+		$("#startRunningBtn").bind("click", function(e){
+		
+			if(typeof game.placedFinish != "undefined" && game.placedFinish === true) {
+				
+				$.mobile.changePage("#running", "slideup");
+				
+				startGame();
+			
+			}
+		
+			e.preventDefault();
+		
+		});
+		
+		
 		
 		
 		initSetupRunMap();
-		
 		
 		
 		e.preventDefault();
@@ -201,8 +212,70 @@ function setupNav(){
 	
 	
 	
+	$("#setNewGame").on("click", function(e){
 	
+		$.mobile.changePage('#setupRun', 'slideup');
+	
+		//e.preventDefault();
+		
+		var runBtn = $("#startRunningBtn");
+		runBtn.button('disable');
+		
+		$("#startRunningBtn").bind("click", function(e){
+		
+			if(typeof game.placedFinish != "undefined" && game.placedFinish === true) {
+				
+				$.mobile.changePage("#running", "slideup");
+				
+				startGame();
+			
+			}
+		
+			e.preventDefault();
+		
+		});
+		
+		
+		
+		
+		initSetupRunMap();
+		
+		
+		e.preventDefault();
+	
+	});
+	
+	
+	$("#goToStats").on("click", function(e){
+	
+		$.mobile.changePage('#statistics', 'slideup');
+	
+		//e.preventDefault();
+	
+	});
 	
 	
                   
 };
+
+
+
+$(document).ready(function(){
+	
+	
+	var ls = localStorage.getItem("user");
+	
+	
+	if(typeof ls != "undefined" && ls != null) {
+	
+		$("#email").val(JSON.parse(ls).email);
+		$("#password").val(JSON.parse(ls).password);
+	
+	}
+	
+	
+	setupNav();
+
+});
+
+

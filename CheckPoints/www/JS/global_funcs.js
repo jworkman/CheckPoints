@@ -1,5 +1,6 @@
 var user = {};
 var globals = {};
+var game = {};
 var loggedIn = false;
 
 
@@ -264,13 +265,12 @@ function setStatistics() {
 	var meters = (user.settings.useMeters) ? user.stats.totalMiles : Math.floor(miles * 100) / 100;
 	
 	var mesurment = (user.settings.useMeters) ? "Meters" : "Miles";
-	$("#totalMiles").html(meters + " <span>" + mesurment + "</span>");
+	$("#totalDist").html(meters + " <span>" + mesurment + "</span>");
 	$("#totalTime").html((Math.floor((user.stats.totalTime / 3600) * 100) / 100) + " <span>Hours</span>");
 	$("#totalPoints").html(user.stats.totalPoints);
 	$("#totalGames").html(user.stats.totalGames);
 	$("#gamesWon").html(user.stats.gamesWon);
 	$("#gamesLost").html(user.stats.gamesLost);
-	$("#totalCheckpoints").html(user.stats.totalCheckpoints);
 
 
 }

@@ -451,11 +451,27 @@ function initSetupRunMap() {
 			var lat = event.latLng.lat();
 			var lng = event.latLng.lng();
 			
+			var image = new google.maps.MarkerImage('IMAGES/finishFlag.png',
+			  // This marker is 20 pixels wide by 32 pixels tall.
+			  new google.maps.Size(20, 32),
+			  // The origin for this image is 0,0.
+			  new google.maps.Point(0,0),
+			  // The anchor for this image is the base of the flagpole at 0,32.
+			  new google.maps.Point(0, 32));
+			
+			/*var image = new google.maps.MarkerImage(
+				"IMAGES/finishFlag.png",
+				new google.maps.Size(37, 32),
+				new google.maps.Point(0,0),
+				new google.maps.Point(0, 32)
+			);*/
+			
 			globals.finishMarker = new google.maps.Marker({
 			
 				position: new google.maps.LatLng(lat, lng),
 				map: globals.map,
-				title: "Finish"
+				title: "Finish",
+				icon: "IMAGES/finishFlag.png",
 			
 			});
 			
@@ -473,28 +489,6 @@ function initSetupRunMap() {
 
 
 }
-
-
-
-
-
-$(document).ready(function(){
-	
-	
-	var ls = localStorage.getItem("user");
-	
-	
-	if(typeof ls != "undefined" && ls != null) {
-	
-		$("#email").val(JSON.parse(ls).email);
-		$("#password").val(JSON.parse(ls).password);
-	
-	}
-	
-	
-	setupNav();
-
-});
 
 
 
