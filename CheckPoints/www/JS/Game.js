@@ -177,7 +177,7 @@ function updateTime() {
 function startGame() {
 
 	game.lastCheckPoint = 0;
-	game.currentTimeLeft = 5;
+	game.currentTimeLeft = 80;
 	game.currentPoints = 0;
 
 	var mapOptions = {
